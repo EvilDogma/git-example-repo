@@ -1,0 +1,9 @@
+body {
+    background-color: #555;
+    color: #fff;
+}
+
+p.route span{
+    background-color: black;
+    padding: 5px;
+}
