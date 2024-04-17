@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User API Doc</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <h1>Routes:</h1>
     <hr>
-    <div class ="route-container">
-        <p class = "route"><span>GET /api/users</span> - Return all users</p>
-        <p class = "route"><span>GET /api/users/:id</span> - Return single user by id</p>
+    <div class="route-container">
+        <p class="route"><span>GET /api/users</span> - Return all users</p>
+        <p class="route"><span>GET /api/users/:id</span> - Return single user by id</p>
     </div>
-    
+    <form id="userform" action="/api/users" method="post">
+        <h2>User Form</h2>
+        <input name="name" type="text" placeholder="Type your name">
+        <input name="age" type="text" placeholder="Type your age">
+        <button>submit</button>
+    </form>
+    <script>
+        const form = document.querySelector('#userform')
+        form.addEventListener('submit',(event) => {
+            event.preventDefault()
+            const name = event.target.name.value
+            const age = event.target.age.value
+
+            fetch('/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    age: age
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                })
+        }
+        )
+
+    </script>
+
+
 </body>
+
 </html>
